@@ -17,7 +17,6 @@ async function activate(elem) {
 
   const publish = new BeeyPublish(container, {
     transcript: {
-      showVideo: params.showVideo ?? true,
       showParagraphButtons: params.showParagraphButtons ?? false,
       enablePhraseSeek: params.enablePhraseSeek ?? false,
       keepTrackWithMedia: params.keepTrackWithMedia ?? false,
@@ -25,6 +24,7 @@ async function activate(elem) {
     },
     media: {
       url: "/wp-content/beeyPublish/"+params.publish_id+"/media.mp4",
+      showVideo: params.showVideo ?? true
     },
       subtitlesUrl: "/wp-content/beeyPublish/"+params.publish_id+"/sub.vtt"
   })
