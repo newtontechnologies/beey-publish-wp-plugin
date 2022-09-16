@@ -20,11 +20,11 @@ async function activate(elem) {
       showParagraphButtons: params.showParagraphButtons ?? false,
       enablePhraseSeek: params.enablePhraseSeek ?? false,
       keepTrackWithMedia: params.keepTrackWithMedia ?? false,
-      showSpeakers: params.showSpeakers ?? false,
     },
     media: {
       url: "/wp-content/beeyPublish/"+params.publish_id+"/media.mp4",
-      showVideo: params.showVideo ?? true
+      showVideo: params.showVideo ?? true,
+      showSpeakers: params.showSpeakers ?? false,
     },
       subtitlesUrl: "/wp-content/beeyPublish/"+params.publish_id+"/sub.vtt"
   })
