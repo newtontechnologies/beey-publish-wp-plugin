@@ -71,10 +71,14 @@ function beeyPublish_admin_page_contents() {
 		mkdir($target_dir . $randomId, 0777, true);
 		if (move_uploaded_file($_FILES["mediaFile"]["tmp_name"], $target_file."media.mp4"))
 			echo "The file ". htmlspecialchars( basename( $_FILES["mediaFile"]["name"])). " has been uploaded.<br/>";
-		else
+		else 
 			echo "Sorry, there was an error uploading your file.<br/>";
 		if (move_uploaded_file($_FILES["trsxFile"]["tmp_name"], $target_file."subs.trsx"))
 			echo "The file ". htmlspecialchars( basename( $_FILES["trsxFile"]["name"])). " has been uploaded.<br/>";
+		else
+			echo "Sorry, there was an error uploading your file.<br/>";
+		if (move_uploaded_file($_FILES["subtitles"]["tmp_name"], $target_file."sub.vtt"))
+			echo "The file ". htmlspecialchars( basename( $_FILES["subtitles"]["name"])). " has been uploaded.<br/>";
 		else
 			echo "Sorry, there was an error uploading your file.<br/>";
 		echo "Project added under id ".$randomId."</br>";
@@ -83,7 +87,8 @@ function beeyPublish_admin_page_contents() {
 	<h2>Create new:</h2>
 	<form method="POST" enctype="multipart/form-data">
 		Media file: <input type="file" name="mediaFile" /><br/>
-                Trsx file: <input type="file" name="trsxFile" /><br/>
+        Trsx file: <input type="file" name="trsxFile" /><br/>
+		Subtitles: <input type="file" name="subtitles" /><br/>
                 <input type="submit" />
 	</form>
 	<hr />
@@ -99,6 +104,16 @@ function beeyPublish_admin_page_contents() {
 		?>
 	</ul>
 	<hr />
+	<h2>Having problems uploading?</h2>
+    <p>If you are having problems with upload, please check that your files do not exceed these limits:</p>
+    <table>
+        <tr><td>Max request size:</td><td><?php echo(ini_get('post_max_size')); ?></td></tr>
+        <tr><td>Max single file size:</td><td><?php echo(ini_get('upload_max_filesize')); ?></td></tr>
+        <tr><td>RAM memory limit:</td><td><?php echo(ini_get('memory_limit')); ?></td></tr>
+    </table>
+    <p>The lowest value will limit the upload size.</p>
+    <p>If you need to increase these limits, search for increasing PHP 'post_max_size', 'upload_max_filesize' and 'memory_limit' values.</p>
+
 	<?php
 }
 
@@ -121,11 +136,10 @@ function add_stylesheet_to_head() {
  
 add_action( 'wp_head', 'add_stylesheet_to_head' );
 
-function add_attribute_to_script_tag($tag, $handle, $src) {
+function add_attribute_to_script_tag($tag, $handle) {
 	if ( 'beeyPublish' === $handle ) {
         $tag = str_replace('src', 'type="module" defer="defer" src', $tag);
     }
-
     return $tag;
  }
 

@@ -4,11 +4,11 @@ wp.blocks.registerBlockType('beey-publish/basic', {
   category: 'common',
   attributes: {
     publish_id: {type: 'string'},
-    hasVideo: {type: 'boolean'},
+    showVideo: {type: 'boolean'},
     enablePhraseSeek: {type: 'boolean'},
     keepTrackWithMedia: {type: 'boolean'},
     showSpeakers: {type: 'boolean'},
-    showParagraphButtons: {type: 'boolean'}
+    showParagraphButtons: {type: 'boolean'},
   },
   
   edit: function(props) {
@@ -23,14 +23,14 @@ wp.blocks.registerBlockType('beey-publish/basic', {
       	React.createElement("br"),
       	React.createElement("input", { type: "text", placeholder: "ID nahrávky z administrace", value: props.attributes.publish_id, onChange: (e) => {props.setAttributes({publish_id: e.target.value})} }),
       	React.createElement("br"),
-      	React.createElement("input", { type: "checkbox", checked: props.attributes.hasVideo, onChange: (e) => {props.setAttributes({hasVideo: !props.attributes.hasVideo})} }),
+      	React.createElement("input", { type: "checkbox", checked: props.attributes.showVideo, onChange: (e) => {props.setAttributes({showVideo: !props.attributes.showVideo})} }),
       	React.createElement("label", {},"Zobrazit video"),
       	React.createElement("br"),
       	React.createElement("input", { type: "checkbox", checked: props.attributes.enablePhraseSeek, onChange: (e) => {props.setAttributes({enablePhraseSeek: !props.attributes.enablePhraseSeek})} }),
-      	React.createElement("label", {},"Povolit přeskakování kliknutím na text"),
+      	React.createElement("label", {},"Povolit přehrávání od konkrétního slova kliknutím v textu"),
       	React.createElement("br"),
       	React.createElement("input", { type: "checkbox", checked: props.attributes.keepTrackWithMedia, onChange: (e) => {props.setAttributes({keepTrackWithMedia: !props.attributes.keepTrackWithMedia})} }),
-      	React.createElement("label", {},"Zapnout zvýrazňování"),
+      	React.createElement("label", {},"Zapnout zvýrazňování přehraných slov"),
       	React.createElement("br"),
       	React.createElement("input", { type: "checkbox", checked: props.attributes.showSpeakers, onChange: (e) => {props.setAttributes({showSpeakers: !props.attributes.showSpeakers})} }),
       	React.createElement("label", {},"Zobrazit mluvčí"),

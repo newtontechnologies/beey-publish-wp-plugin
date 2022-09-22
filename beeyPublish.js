@@ -16,19 +16,20 @@ async function activate(elem) {
   elem.id = randId
 
   const publish = new BeeyPublish(container, {
+    media: {
+      url: "/wp-content/beeyPublish/" + params.publish_id + "/media.mp4",
+      showVideo: params.showVideo ?? true,
+    },
     transcript: {
       showParagraphButtons: params.showParagraphButtons ?? false,
       enablePhraseSeek: params.enablePhraseSeek ?? false,
       keepTrackWithMedia: params.keepTrackWithMedia ?? false,
-      showSpeakers: params.showSpeakers ?? false,
     },
-    media: {
-      url: 'https://www.beey.io/wp-content/uploads/2022/07/job-interview.mp4',
-    },
+    subtitlesUrl: "/wp-content/beeyPublish/" + params.publish_id + "/sub.vtt",
+    showSpeakers: params.showSpeakers ?? false,
   })
-  console.log(publish)
   await publish.loadTrsx({
-    url: 'https://www.beey.io/wp-content/uploads/2022/07/job-interview.trsx',
+    url: "/wp-content/beeyPublish/" + params.publish_id + "/subs.trsx",
   });
 }
 
