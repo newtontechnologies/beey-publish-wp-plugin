@@ -1,2 +1,20 @@
+body {
+  line-height: 1.2;
+}
 
+.transcript-section__player>p {
+  word-break: keep-all;
+}
 
+.speakers .tooltip {
+  opacity: 1;
+  z-index: 0;
+}
+
+.enable-transcript .switch {
+  min-height: 0;
+}
+
+.speed .speed-slider {
+  z-index: 1000;
+}

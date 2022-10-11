@@ -11,9 +11,7 @@ for(let i = 0; i < conts.length; i++) {
 
 async function activate(elem) {
   let params = JSON.parse(elem.getAttribute("params"))
-  let randId = parseInt(Math.random() * 1e10)
-  let container = document.querySelector('.wp-container-7');
-  elem.id = randId
+  let container = document.querySelector('.beey-publish-wp-container');
 
   const publish = new BeeyPublish(container, {
     media: {
