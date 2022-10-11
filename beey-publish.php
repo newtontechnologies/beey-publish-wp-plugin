@@ -125,6 +125,12 @@ function beeyPublish_enqueue_scripts() {
 	wp_enqueue_script(
 		'beeyPublish',
         plugin_dir_url(__FILE__) . 'beeyPublish.js',
+        array(),
+		true
+	);
+	wp_enqueue_style(
+		'beeyPublish-css',
+        plugin_dir_url(__FILE__) . 'beeyPublish.css',
 		true
 	);
 }
@@ -137,10 +143,12 @@ function add_stylesheet_to_head() {
 add_action( 'wp_head', 'add_stylesheet_to_head' );
 
 function add_attribute_to_script_tag($tag, $handle) {
-	if ( 'beeyPublish' === $handle ) {
-        $tag = str_replace('src', 'type="module" defer="defer" src', $tag);
+    if ( 'beeyPublish' === $handle ) {
+        $tag = str_replace("script src", 'script type="module" defer="defer" src', $tag);
+        $tag = str_replace("type='text/javascript'", 'type="module" defer="defer"', $tag);
+        $tag = str_replace('type="text/javascript"', 'type="module" defer="defer"', $tag);
     }
     return $tag;
- }
+}
 
 add_filter('script_loader_tag', 'add_attribute_to_script_tag' , 10, 3);
